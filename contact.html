@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Adkrak Innovations Pvt Ltd</title>
+  <meta name="description" content="Get in touch with Adkrak Innovations. Book a demo, discuss a custom project, or just say hello." />
+  <meta name="theme-color" content="#0b1020" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css?v=3">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #0b1020; color: #e5e7eb; font-family: 'Inter', system-ui, sans-serif; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .grad-text { background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grad-border { background: linear-gradient(#0f1530, #0f1530) padding-box, linear-gradient(135deg, rgba(167,139,250,0.5), rgba(96,165,250,0.4), rgba(52,211,153,0.5)) border-box; border: 1px solid transparent; border-radius: 1rem; }
+    .card-hover { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .card-hover:hover { transform: translateY(-4px); }
+    .bg-mesh { background-image: radial-gradient(at 15% 20%, rgba(167,139,250,0.18) 0px, transparent 50%), radial-gradient(at 85% 10%, rgba(96,165,250,0.16) 0px, transparent 50%), radial-gradient(at 50% 90%, rgba(52,211,153,0.12) 0px, transparent 50%); }
+    .grid-bg { background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #cbd5e1; }
+    .nav-blur { backdrop-filter: saturate(180%) blur(14px); background: rgba(11,16,32,0.7); }
+    .label { display: block; font-size: 12px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .input {
+      width: 100%; padding: 12px 14px; border-radius: 10px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+      color: white; font-size: 14px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .input:focus { outline: none; border-color: rgba(167,139,250,0.6); background: rgba(255,255,255,0.08); }
+    .input::placeholder { color: #64748b; }
+    select.input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    .btn-primary { background: linear-gradient(135deg, #7c3aed, #2563eb); color: white; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 14px; transition: filter 0.2s; border: none; cursor: pointer; }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .icon-tile { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="preloader"><div class="preloader-mark">A</div></div>
+  <div class="cursor-glow"></div>
+  <div class="cursor-dot"></div>
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-lg">A</span>
+        </div>
+        <span class="font-display font-bold text-white text-lg tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="products.html" class="hover:text-white transition">Products</a>
+        <a href="about.html" class="hover:text-white transition">About</a>
+        <a href="contact.html" class="text-white font-semibold">Contact</a>
+      </nav>
+      <a href="tel:+919876543210" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">📞 Call us</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative pt-32 pb-10 md:pt-40 overflow-hidden bg-mesh">
+    <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
+      <div class="pill mb-6">Talk to us</div>
+      <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight">
+        Get in touch.<br/>
+        <span class="grad-text">We reply within a day.</span>
+      </h1>
+      <p class="mt-6 max-w-xl mx-auto text-lg text-slate-300 leading-relaxed">
+        Founders take every inbound message. No sales funnel, no chatbot. Pick the fastest channel for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT GRID -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-5 gap-8">
+
+        <!-- Contact details -->
+        <div class="lg:col-span-2 space-y-4">
+
+          <a href="tel:+919876543210" class="grad-border p-6 card-hover block">
+            <div class="flex items-start gap-4">
+              <div class="icon-tile" style="background: linear-gradient(135deg, #10b981, #14b8a6);">📞</div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold uppercase tracking-wider text-emerald-300">Call us</div>
+                <div class="text-white font-display font-bold text-xl mt-1">+91 98765 43210</div>
+                <div class="text-slate-400 text-xs mt-1">Mon–Sat · 9 AM – 8 PM IST</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" class="grad-border p-6 card-hover block">
+            <div class="flex items-start gap-4">
+              <div class="icon-tile" style="background: linear-gradient(135deg, #22c55e, #16a34a);">💬</div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold uppercase tracking-wider text-emerald-300">WhatsApp</div>
+                <div class="text-white font-display font-bold text-xl mt-1">Chat with us →</div>
+                <div class="text-slate-400 text-xs mt-1">Fastest response · usually under 2 hours</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="mailto:hello@adkrak.com" class="grad-border p-6 card-hover block">
+            <div class="flex items-start gap-4">
+              <div class="icon-tile" style="background: linear-gradient(135deg, #a78bfa, #6366f1);">✉️</div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold uppercase tracking-wider text-violet-300">Email</div>
+                <div class="text-white font-display font-bold text-xl mt-1 break-all">hello@adkrak.com</div>
+                <div class="text-slate-400 text-xs mt-1">Longer notes, attachments, RFPs</div>
+              </div>
+            </div>
+          </a>
+
+          <div class="grad-border p-6">
+            <div class="flex items-start gap-4">
+              <div class="icon-tile" style="background: linear-gradient(135deg, #f97316, #ef4444);">📍</div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold uppercase tracking-wider text-orange-300">Registered office</div>
+                <div class="text-white text-sm mt-1">Adkrak Innovations Pvt Ltd</div>
+                <div class="text-slate-400 text-xs mt-1">Kerala, India</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="lg:col-span-3">
+          <div class="grad-border p-8">
+            <h2 class="font-display font-bold text-white text-2xl">Send us a message</h2>
+            <p class="text-slate-400 text-sm mt-1 mb-6">Tell us what you're building and how we can help.</p>
+
+            <form action="https://formsubmit.co/hello@adkrak.com" method="POST" class="space-y-4">
+              <input type="hidden" name="_subject" value="New enquiry from adkrak.com" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label class="label">Full name *</label>
+                  <input class="input" type="text" name="name" required placeholder="Your name" />
+                </div>
+                <div>
+                  <label class="label">Company / Institution</label>
+                  <input class="input" type="text" name="company" placeholder="Restaurant, school, etc." />
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label class="label">Email *</label>
+                  <input class="input" type="email" name="email" required placeholder="you@company.com" />
+                </div>
+                <div>
+                  <label class="label">Phone *</label>
+                  <input class="input" type="tel" name="phone" required placeholder="+91 98765 43210" />
+                </div>
+              </div>
+
+              <div>
+                <label class="label">Which product are you interested in?</label>
+                <select class="input" name="product">
+                  <option value="">— Choose a product —</option>
+                  <option value="edunova">EduNova — School & College Management</option>
+                  <option value="restopos">RestoPOS — Restaurant Management</option>
+                  <option value="exam-portal">Exam Portal — Online Examinations</option>
+                  <option value="report-generation">Report Generation — Automated Reports</option>
+                  <option value="roadgenie">Roadgenie — Travel & Roadside Assistance</option>
+                  <option value="custom-website">Custom Website Development</option>
+                  <option value="just-saying-hi">Just saying hi</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="label">Tell us more</label>
+                <textarea class="input" name="message" rows="5" placeholder="What are you trying to solve? How many users? Timeline? Anything helpful."></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary w-full">
+                Send message →
+              </button>
+
+              <p class="text-xs text-slate-500 text-center pt-2">
+                By submitting, you agree to be contacted about your enquiry. We never spam.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ / What happens next -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="font-display text-2xl md:text-4xl font-bold text-white mb-8 text-center">What happens after you send?</h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="grad-border p-6 card-hover text-center">
+          <div class="text-3xl mb-3">1</div>
+          <h3 class="font-display font-bold text-white mb-2">We reply</h3>
+          <p class="text-slate-400 text-sm">Within one business day, from a founder. Not a rep, not a bot.</p>
+        </div>
+        <div class="grad-border p-6 card-hover text-center">
+          <div class="text-3xl mb-3">2</div>
+          <h3 class="font-display font-bold text-white mb-2">We understand</h3>
+          <p class="text-slate-400 text-sm">Short call (~20 min) to understand what you actually need. No slide deck.</p>
+        </div>
+        <div class="grad-border p-6 card-hover text-center">
+          <div class="text-3xl mb-3">3</div>
+          <h3 class="font-display font-bold text-white mb-2">We ship</h3>
+          <p class="text-slate-400 text-sm">Demo on your own data within a week. If it's a fit, we start rolling out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-xs">A</span>
+        </div>
+        <span class="text-slate-400 text-sm">© 2026 Adkrak Innovations Pvt Ltd</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-slate-500">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="products.html" class="hover:text-white transition">Products</a>
+        <a href="about.html" class="hover:text-white transition">About</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="motion.js?v=3"></script>
+</body>
+</html>

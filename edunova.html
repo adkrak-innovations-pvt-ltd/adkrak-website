@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduNova — School & College Management Platform with Built-in Labs | Adkrak</title>
+  <meta name="description" content="EduNova by Adkrak — attendance, fees, exams, parent app, browser-based labs, real-time bus tracking, AI exam proctoring and more. Built for India's schools and colleges." />
+  <meta name="theme-color" content="#0b1020" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #0b1020; color: #e5e7eb; font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .grad-text-cyan {
+      background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #6366f1 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .grad-text-violet {
+      background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #6366f1 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .grad-border {
+      background: linear-gradient(#0f1530, #0f1530) padding-box,
+                  linear-gradient(135deg, rgba(34,211,238,0.5), rgba(99,102,241,0.4)) border-box;
+      border: 1px solid transparent; border-radius: 1rem;
+    }
+    .grad-bg-cyan   { background: linear-gradient(135deg, #06b6d4, #3b82f6); }
+    .grad-bg-violet { background: linear-gradient(135deg, #a855f7, #6366f1); }
+    .card-hover { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 25px 50px -12px rgba(59,130,246,0.25); }
+    .bg-mesh-cyan {
+      background-image:
+        radial-gradient(at 20% 20%, rgba(34,211,238,0.16) 0px, transparent 50%),
+        radial-gradient(at 80% 10%, rgba(99,102,241,0.16) 0px, transparent 50%),
+        radial-gradient(at 50% 90%, rgba(59,130,246,0.10) 0px, transparent 50%);
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #cbd5e1;
+    }
+    .pill-violet { background: rgba(167,139,250,0.12); border-color: rgba(167,139,250,0.30); color:#c4b5fd; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 8px #22d3ee; }
+    .nav-blur { backdrop-filter: saturate(180%) blur(14px); background: rgba(11,16,32,0.7); }
+
+    .mockup {
+      background: #0a0e1f;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 50px 100px -20px rgba(0,0,0,0.6);
+    }
+    .mockup-bar {
+      background: #111935;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .mockup-bar span { width: 10px; height: 10px; border-radius: 50%; }
+
+    .lab-window {
+      background: #060914;
+      border-radius: 10px;
+      padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .code-line { display: block; }
+    .code-line .kw { color: #c084fc; }
+    .code-line .str { color: #4ade80; }
+    .code-line .fn { color: #22d3ee; }
+    .code-line .num { color: #fb923c; }
+
+    /* Simple bus-route visual */
+    .route-line {
+      position: relative;
+      height: 2px;
+      background: linear-gradient(90deg, #22d3ee, #6366f1, #c084fc);
+      border-radius: 999px;
+    }
+    .route-stop {
+      position: absolute;
+      top: -5px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #0a0e1f;
+      border: 2px solid #22d3ee;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-lg">A</span>
+        </div>
+        <span class="font-display font-bold text-white text-lg tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+        <a href="index.html#products" class="hover:text-white transition">Products</a>
+        <a href="#core" class="hover:text-white transition">Modules</a>
+        <a href="#bus" class="hover:text-white transition">Bus tracking</a>
+        <a href="#pricing" class="hover:text-white transition">Pricing</a>
+        <a href="#demo" class="hover:text-white transition">Demo</a>
+      </nav>
+      <a href="#demo" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white grad-bg-cyan">
+        Book a demo →
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-mesh-cyan">
+    <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 pill mb-6">
+          <span class="dot"></span>
+          For schools, colleges, coaching institutes & training centres
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-14 h-14 rounded-2xl grid place-items-center font-display font-bold text-white text-xl grad-bg-cyan">EN</div>
+          <span class="font-display text-2xl font-bold text-white">EduNova</span>
+        </div>
+        <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight text-white leading-[1.05]">
+          One platform.<br/>
+          <span class="grad-text-cyan">Every part of the campus.</span>
+        </h1>
+        <p class="mt-6 text-lg text-slate-300 leading-relaxed max-w-2xl">
+          Attendance, fees, exams, parent app, library, transport — all unified.
+          Plus in-built browser labs where students code and run experiments,
+          live GPS bus tracking for every route, AI exam proctoring, and a full analytics dashboard for management.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#demo" class="px-6 py-3 rounded-lg font-semibold text-white grad-bg-cyan">Book a free demo</a>
+          <a href="#core" class="px-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5 transition">See all modules</a>
+        </div>
+        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-400">
+          <span>✓ Parent + student + teacher + admin + driver apps</span>
+          <span>✓ Works on low-end Android</span>
+          <span>✓ NEP 2020-aligned</span>
+          <span>✓ Multi-campus ready</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUAL MOCKUP -->
+  <section class="pb-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-5">
+        <!-- Admin dashboard -->
+        <div class="mockup">
+          <div class="mockup-bar">
+            <span style="background:#ef4444"></span><span style="background:#fbbf24"></span><span style="background:#10b981"></span>
+            <div class="ml-3 text-xs text-slate-400 font-mono">edunova.app / dashboard</div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="font-display font-bold text-white text-sm">Principal Dashboard</h4>
+              <span class="pill" style="color:#22d3ee;border-color:rgba(34,211,238,0.3);background:rgba(34,211,238,0.1)">Live today</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="p-3 rounded-lg bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">Attendance</div>
+                <div class="font-display font-bold text-white text-xl">94.2%</div>
+                <div class="text-xs text-emerald-400">↑ 2.1% vs yest.</div>
+              </div>
+              <div class="p-3 rounded-lg bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">Fees collected</div>
+                <div class="font-display font-bold text-white text-xl">₹4.8L</div>
+                <div class="text-xs text-emerald-400">68% of month</div>
+              </div>
+              <div class="p-3 rounded-lg bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">Buses live</div>
+                <div class="font-display font-bold text-white text-xl">12 / 14</div>
+                <div class="text-xs text-amber-400">2 in workshop</div>
+              </div>
+              <div class="p-3 rounded-lg bg-white/5 border border-white/10">
+                <div class="text-xs text-slate-400">At-risk students</div>
+                <div class="font-display font-bold text-white text-xl">17</div>
+                <div class="text-xs text-amber-400">flagged by AI</div>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="text-xs text-slate-400 mb-1">Class-wise attendance</div>
+              <div class="flex items-center gap-2 text-xs">
+                <span class="w-12 text-slate-300">VIII-A</span>
+                <div class="flex-1 h-2 rounded-full bg-white/5 overflow-hidden"><div class="h-full grad-bg-cyan" style="width:96%"></div></div>
+                <span class="w-10 text-right text-slate-400">96%</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <span class="w-12 text-slate-300">IX-B</span>
+                <div class="flex-1 h-2 rounded-full bg-white/5 overflow-hidden"><div class="h-full grad-bg-cyan" style="width:89%"></div></div>
+                <span class="w-10 text-right text-slate-400">89%</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <span class="w-12 text-slate-300">X-A</span>
+                <div class="flex-1 h-2 rounded-full bg-white/5 overflow-hidden"><div class="h-full grad-bg-cyan" style="width:93%"></div></div>
+                <span class="w-10 text-right text-slate-400">93%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student lab -->
+        <div class="mockup">
+          <div class="mockup-bar">
+            <span style="background:#ef4444"></span><span style="background:#fbbf24"></span><span style="background:#10b981"></span>
+            <div class="ml-3 text-xs text-slate-400 font-mono">edunova.app / labs / python-101</div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-display font-bold text-white text-sm">Lab: Loops & Conditions</h4>
+              <span class="pill" style="color:#34d399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.1)">Tests passing</span>
+            </div>
+            <div class="lab-window">
+              <span class="code-line"><span class="kw">def</span> <span class="fn">is_prime</span>(n):</span>
+              <span class="code-line">&nbsp;&nbsp;<span class="kw">if</span> n &lt; <span class="num">2</span>:</span>
+              <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="kw">False</span></span>
+              <span class="code-line">&nbsp;&nbsp;<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, n):</span>
+              <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> n % i == <span class="num">0</span>:</span>
+              <span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="kw">False</span></span>
+              <span class="code-line">&nbsp;&nbsp;<span class="kw">return</span> <span class="kw">True</span></span>
+              <span class="code-line">&nbsp;</span>
+              <span class="code-line"><span class="fn">print</span>(<span class="fn">is_prime</span>(<span class="num">17</span>))  <span style="color:#64748b"># True</span></span>
+            </div>
+            <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+              <button class="py-2 rounded-lg bg-white/5 border border-white/10 text-slate-300">▶ Run</button>
+              <button class="py-2 rounded-lg grad-bg-cyan font-semibold text-white">Submit</button>
+            </div>
+            <div class="mt-3 text-xs text-slate-500">No installs. No setup. AI proctoring during exams.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE MODULES -->
+  <section id="core" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mb-12">
+        <div class="pill mb-4">Core modules</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          The whole school, <span class="grad-text-cyan">in one login.</span>
+        </h2>
+        <p class="mt-4 text-slate-400 text-lg">Five foundational stacks every campus needs — built once, refined for India.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📋</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Academics automation</h3>
+          <p class="text-slate-400 text-sm">Attendance, timetable, exams, and report cards generated automatically. Teachers enter marks once — CBSE / ICSE / State Board templates render instantly.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">💰</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Fee collection</h3>
+          <p class="text-slate-400 text-sm">UPI, cards, EMI and net-banking. Automated reminders via WhatsApp, app, SMS. Late-fee rules, instalments, receipt PDFs — zero manual work.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🧪</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">In-built student labs</h3>
+          <p class="text-slate-400 text-sm">Python, JavaScript, HTML/CSS, SQL plus virtual physics & chemistry labs. Run in any browser — phone, tablet, old PC. Zero installs.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📱</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Parent app</h3>
+          <p class="text-slate-400 text-sm">Daily diary, attendance, marks, fee status, bus location, school announcements — all on one screen. Two-way teacher chat.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🏢</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">HR · Payroll · Library · Transport</h3>
+          <p class="text-slate-400 text-sm">Staff attendance, leave, PF, ESI, payslips. Library catalogue with barcode. Transport routes and driver allocation. All one stack.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUS TRACKING SPOTLIGHT (biggest enhancement, deserves its own section) -->
+  <section id="bus" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grad-border p-8 md:p-12 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-cyan-500/15 blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl"></div>
+        <div class="relative">
+          <div class="pill mb-4">Flagship enhancement</div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+            Real-time school bus tracking,<br/>
+            <span class="grad-text-cyan">done properly.</span>
+          </h2>
+          <p class="mt-5 text-slate-300 text-lg max-w-3xl leading-relaxed">
+            Every bus, every route, every parent — live. Built for fleets of 1 to 500 buses
+            with conflict-free scheduling and geofenced safety alerts.
+          </p>
+
+          <!-- Mini route diagram -->
+          <div class="mt-10 p-6 rounded-2xl bg-black/30 border border-white/10">
+            <div class="flex items-center justify-between mb-3 text-xs text-slate-400 font-mono">
+              <span>Route #3 · Indiranagar → Campus · Bus KA-01-EN-1234</span>
+              <span class="text-cyan-300">● Live · ETA Campus 7:42 AM</span>
+            </div>
+            <div class="relative my-8 mx-4">
+              <div class="route-line"></div>
+              <div class="route-stop" style="left: 0%"></div>
+              <div class="route-stop" style="left: 25%"></div>
+              <div class="route-stop" style="left: 50%; border-color:#a855f7; background:#a855f7"></div>
+              <div class="route-stop" style="left: 75%"></div>
+              <div class="route-stop" style="left: 100%; transform: translateX(-100%)"></div>
+              <div class="absolute -top-7 text-xs" style="left:0%">Depot</div>
+              <div class="absolute -top-7 text-xs" style="left:23%">Stop A</div>
+              <div class="absolute -top-7 text-xs font-bold text-violet-300" style="left:46%">🚌 Stop B (now)</div>
+              <div class="absolute -top-7 text-xs" style="left:73%">Stop C</div>
+              <div class="absolute -top-7 text-xs" style="right:0%">Campus</div>
+              <div class="absolute top-6 text-[10px] text-slate-500" style="left:0%">6:50</div>
+              <div class="absolute top-6 text-[10px] text-slate-500" style="left:23%">7:08</div>
+              <div class="absolute top-6 text-[10px] text-violet-300" style="left:46%">7:22 ✓</div>
+              <div class="absolute top-6 text-[10px] text-slate-500" style="left:73%">7:34 est.</div>
+              <div class="absolute top-6 text-[10px] text-slate-500" style="right:0%">7:42 est.</div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">📍</div>
+              <h3 class="text-white font-semibold mb-1">Real-time GPS</h3>
+              <p class="text-slate-400 text-xs">Sub-10-second location updates from every bus, every route.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">🗺️</div>
+              <h3 class="text-white font-semibold mb-1">Multi-bus, multi-route</h3>
+              <p class="text-slate-400 text-xs">Assign students to specific routes and stops. Schedule conflicts auto-detected.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">⏱️</div>
+              <h3 class="text-white font-semibold mb-1">Live ETA per stop</h3>
+              <p class="text-slate-400 text-xs">Each parent sees the ETA for their child's stop — not the whole route average.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">📡</div>
+              <h3 class="text-white font-semibold mb-1">Geofenced alerts</h3>
+              <p class="text-slate-400 text-xs">Auto push: "Bus approaching", "Boarded", "Departed", "Arrived at school".</p>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">🧭</div>
+              <h3 class="text-white font-semibold mb-1">Route optimization</h3>
+              <p class="text-slate-400 text-xs">AI suggests faster sequences when traffic patterns change or stops shift.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">👨‍✈️</div>
+              <h3 class="text-white font-semibold mb-1">Driver / conductor app</h3>
+              <p class="text-slate-400 text-xs">RFID-scan boarding attendance. SOS, fuel log, breakdown report, one-tap.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">🚦</div>
+              <h3 class="text-white font-semibold mb-1">Conflict detection</h3>
+              <p class="text-slate-400 text-xs">Admin gets warned of overlapping schedules, double-booked drivers, or buses over capacity.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-2">🏫</div>
+              <h3 class="text-white font-semibold mb-1">Admin command centre</h3>
+              <p class="text-slate-400 text-xs">All buses, routes and drivers on one screen. Reassign on the fly. Audit every action.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENHANCEMENTS (the rest) -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mb-12">
+        <div class="pill pill-violet mb-4">Enhancements</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          Modern features <span class="grad-text-violet">other ERPs are missing.</span>
+        </h2>
+        <p class="mt-4 text-slate-400 text-lg">Built-in where competitors charge extra — or don't offer at all.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Biometric / RFID -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">👆</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Biometric & RFID attendance</h3>
+          <p class="text-slate-400 text-sm">Plug-and-play fingerprint and RFID/NFC card support for students and staff. Mark attendance at gate, classroom, lab, or bus boarding — all sync to one record.</p>
+        </div>
+
+        <!-- AI proctoring -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🤖</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">AI exam proctoring</h3>
+          <p class="text-slate-400 text-sm">Run secure online tests inside the lab module. Webcam + screen monitoring flags tab-switching, multiple faces, talking, and unusual behaviour. Teacher reviews flagged moments in seconds.</p>
+        </div>
+
+        <!-- Inventory / asset -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📦</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Inventory & asset management</h3>
+          <p class="text-slate-400 text-sm">Track everything from lab microscopes to projectors and chairs. QR-tag assets, log maintenance, assign to rooms or staff, depreciation reports for audit.</p>
+        </div>
+
+        <!-- Multi-campus -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🏛️</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Multi-campus / multi-branch</h3>
+          <p class="text-slate-400 text-sm">For school groups and trusts. One trust-level admin sees all campuses. Each campus head sees only theirs. Common templates, separate finances.</p>
+        </div>
+
+        <!-- RBAC -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🔐</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Role-based access control</h3>
+          <p class="text-slate-400 text-sm">Granular permissions for admin, teacher, parent, student, driver, accountant, librarian. Every action audit-logged.</p>
+        </div>
+
+        <!-- Analytics -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📊</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Management analytics</h3>
+          <p class="text-slate-400 text-sm">Attendance trends, fee-collection rates, academic performance, bus utilization, lab engagement — boardroom-ready dashboards.</p>
+        </div>
+
+        <!-- Offline first -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📶</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Offline-first mobile app</h3>
+          <p class="text-slate-400 text-sm">Teachers in low-connectivity areas keep working. Attendance, marks, notes sync the moment the device gets a signal again.</p>
+        </div>
+
+        <!-- WhatsApp / SMS -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">💬</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">WhatsApp & SMS integration</h3>
+          <p class="text-slate-400 text-sm">Fee reminders, attendance alerts, exam results, bus ETA — pushed via WhatsApp Business API and SMS gateway, alongside the app.</p>
+        </div>
+
+        <!-- Browser labs (reiterated as enhancement) -->
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🧪</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Auto-graded labs</h3>
+          <p class="text-slate-400 text-sm">Code assignments and virtual-lab experiments auto-graded against teacher-set test cases. Teachers stop drowning in marking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL APPS GRID -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="pill mb-4">Apps</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-10">
+        Seven apps. One platform.
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+        <AppCard icon="👨‍💼" label="Admin / Principal" />
+        <AppCard icon="👩‍🏫" label="Teacher" />
+        <AppCard icon="👪" label="Parent" />
+        <AppCard icon="🎓" label="Student" />
+        <AppCard icon="🚌" label="Driver / Conductor" />
+        <AppCard icon="💰" label="Accountant" />
+        <AppCard icon="🏛️" label="Trust / Group" />
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="pill mb-4">Built for</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-10">Every kind of institution.</h2>
+      <div class="grid md:grid-cols-4 gap-5">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">🏫</div>
+          <h3 class="text-white font-semibold mb-1">K-12 schools</h3>
+          <p class="text-slate-400 text-sm">CBSE, ICSE, IB, State boards.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">🎓</div>
+          <h3 class="text-white font-semibold mb-1">Colleges & universities</h3>
+          <p class="text-slate-400 text-sm">Multi-department, semester-based, NAAC reports.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">📖</div>
+          <h3 class="text-white font-semibold mb-1">Coaching institutes</h3>
+          <p class="text-slate-400 text-sm">JEE, NEET, UPSC, CA batches.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">🏛️</div>
+          <h3 class="text-white font-semibold mb-1">School groups & trusts</h3>
+          <p class="text-slate-400 text-sm">Multi-campus, central admin, per-campus finances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="pill mb-4 mx-auto">Pricing</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          Per student. <span class="grad-text-cyan">Everything included.</span>
+        </h2>
+        <p class="mt-4 text-slate-400">No "modules" to unlock. No per-feature add-ons. Free data migration and onboarding.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="p-7 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-display font-bold text-white text-xl">Essentials</h3>
+          <p class="text-slate-400 text-sm mt-1">Up to 300 students.</p>
+          <div class="mt-5 flex items-baseline gap-1"><span class="font-display font-bold text-white text-4xl">₹49</span><span class="text-slate-400 text-sm">/student/month</span></div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>✓ Attendance, fees, exams</li>
+            <li>✓ Parent + teacher apps</li>
+            <li>✓ WhatsApp + SMS</li>
+            <li>✓ Basic labs (Python, HTML)</li>
+            <li>✓ Email support</li>
+          </ul>
+          <a href="#demo" class="block text-center mt-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5">Start free trial</a>
+        </div>
+
+        <div class="p-7 rounded-2xl grad-border relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 pill" style="background:#06b6d4;color:white;border-color:#06b6d4">Most popular</span>
+          <h3 class="font-display font-bold text-white text-xl">Complete</h3>
+          <p class="text-slate-400 text-sm mt-1">300–2,000 students.</p>
+          <div class="mt-5 flex items-baseline gap-1"><span class="font-display font-bold text-white text-4xl">₹89</span><span class="text-slate-400 text-sm">/student/month</span></div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>✓ Everything in Essentials</li>
+            <li>✓ Full lab suite + auto-grading + AI proctoring</li>
+            <li>✓ Real-time bus tracking (unlimited buses)</li>
+            <li>✓ Biometric / RFID hardware support</li>
+            <li>✓ Inventory & asset management</li>
+            <li>✓ Library, HR, payroll, transport</li>
+            <li>✓ Management analytics</li>
+            <li>✓ Priority support</li>
+          </ul>
+          <a href="#demo" class="block text-center mt-6 py-3 rounded-lg font-semibold text-white grad-bg-cyan">Start free trial</a>
+        </div>
+
+        <div class="p-7 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-display font-bold text-white text-xl">Trust / Multi-campus</h3>
+          <p class="text-slate-400 text-sm mt-1">2,000+ students or multiple campuses.</p>
+          <div class="mt-5 flex items-baseline gap-1"><span class="font-display font-bold text-white text-4xl">Custom</span></div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>✓ Unlimited campuses</li>
+            <li>✓ Trust-level admin + per-campus heads</li>
+            <li>✓ SSO, custom integrations</li>
+            <li>✓ NAAC / NIRF / NEP report packs</li>
+            <li>✓ On-premise option</li>
+            <li>✓ Dedicated account manager</li>
+            <li>✓ 24×7 support + SLA</li>
+          </ul>
+          <a href="#demo" class="block text-center mt-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="pill mb-4">FAQ</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-10">Questions, answered.</h2>
+      <div class="space-y-3">
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">What hardware do I need for bus tracking? <span class="text-cyan-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">Any standard 4G GPS tracker (we recommend specific tested models) plus the driver app on a low-cost Android phone. We can supply or you can source locally. Setup is half a day per bus.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">How does the AI proctoring work? <span class="text-cyan-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">During an online exam, the student's webcam and screen are monitored. Our AI flags suspicious moments (tab-switch, multiple faces, talking, looking away). The teacher reviews only the flagged 5-10 seconds — not the whole hour.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">Will it work on basic Android phones? <span class="text-cyan-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">Yes. Built specifically for low-RAM Android phones. Offline-first mode means rural-area teachers can keep marking attendance and entering grades even without signal.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">How long to migrate from our current ERP? <span class="text-cyan-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">2–4 weeks for a full migration with data import, training, parallel-run, go-live. We've moved schools from Campus Care, MyClassboard, Edsys, Fedena, and others.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">Is it NEP 2020 / CBSE / NAAC compliant? <span class="text-cyan-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">Yes. Holistic progress cards, competency-based assessment, vocational tracks, bag-less day reports, NAAC SSR fields, NIRF format exports — all built in.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">Who owns the data? <span class="text-cyan-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">You do. Hosted in Indian data centres. Full export available any time. We follow DPDPA (India's data protection law) by design. On-premise option available for trusts that require it.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="demo" class="py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="grad-border p-10 md:p-14 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-cyan opacity-60 pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+            See EduNova run<br/>your campus.
+          </h2>
+          <p class="mt-6 text-slate-300 text-lg max-w-xl mx-auto">
+            45-minute walkthrough. We'll load a sample of your class structure and routes so the demo feels like your actual school.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="mailto:edunova@adkrak.com?subject=EduNova%20demo%20request" class="px-6 py-3 rounded-lg font-semibold text-white grad-bg-cyan">Book a free demo</a>
+            <a href="tel:+910000000000" class="px-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5 transition">Call us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-10 mt-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-xs">A</span>
+        </div>
+        <span class="text-slate-400 text-sm">© 2026 Adkrak Innovations Pvt Ltd</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-slate-500">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="restopos.html" class="hover:text-white transition">RestoPOS</a>
+        <a href="index.html#contact" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Inline component (used above) -->
+  <script>
+    // Replace <AppCard> custom tag with rendered HTML at page load
+    document.querySelectorAll('AppCard').forEach(el => {
+      const icon = el.getAttribute('icon');
+      const label = el.getAttribute('label');
+      const div = document.createElement('div');
+      div.className = 'p-4 rounded-xl bg-white/5 border border-white/10 text-center';
+      div.innerHTML = `<div class="text-2xl mb-1">${icon}</div><div class="text-xs font-semibold text-white">${label}</div>`;
+      el.replaceWith(div);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Adkrak Innovations Pvt Ltd</title>
+  <meta name="description" content="Three founders building software for India's everyday industries — restaurants, schools, roads, and exams." />
+  <meta name="theme-color" content="#0b1020" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css?v=3">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #0b1020; color: #e5e7eb; font-family: 'Inter', system-ui, sans-serif; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .grad-text { background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grad-border { background: linear-gradient(#0f1530, #0f1530) padding-box, linear-gradient(135deg, rgba(167,139,250,0.5), rgba(96,165,250,0.4), rgba(52,211,153,0.5)) border-box; border: 1px solid transparent; border-radius: 1rem; }
+    .card-hover { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 25px 50px -12px rgba(124,58,237,0.25); }
+    .bg-mesh { background-image: radial-gradient(at 15% 20%, rgba(167,139,250,0.18) 0px, transparent 50%), radial-gradient(at 85% 10%, rgba(96,165,250,0.16) 0px, transparent 50%), radial-gradient(at 50% 90%, rgba(52,211,153,0.12) 0px, transparent 50%); }
+    .grid-bg { background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #cbd5e1; }
+    .avatar { width: 88px; height: 88px; border-radius: 22px; display: grid; place-items: center; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 32px; color: white; }
+    .nav-blur { backdrop-filter: saturate(180%) blur(14px); background: rgba(11,16,32,0.7); }
+    .quote-mark { font-family: Georgia, serif; font-size: 90px; line-height: 60px; opacity: 0.15; }
+  </style>
+</head>
+<body>
+
+  <div class="preloader"><div class="preloader-mark">A</div></div>
+  <div class="cursor-glow"></div>
+  <div class="cursor-dot"></div>
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-lg">A</span>
+        </div>
+        <span class="font-display font-bold text-white text-lg tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="products.html" class="hover:text-white transition">Products</a>
+        <a href="about.html" class="text-white font-semibold">About</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a href="contact.html" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">Get in touch →</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden bg-mesh">
+    <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
+      <div class="pill mb-6">About Adkrak Innovations</div>
+      <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight">
+        We build software for<br/>
+        <span class="grad-text">the industries that never sleep.</span>
+      </h1>
+      <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-300 leading-relaxed">
+        Three engineers, one belief — the software that runs restaurants, schools and highways should feel as good as the apps we all use every day. So we're rebuilding it, category by category.
+      </p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="grad-border p-8 md:p-12">
+        <div class="pill mb-4">Our story</div>
+        <h2 class="font-display text-2xl md:text-4xl font-bold text-white leading-tight">
+          We came from the industries we now serve.
+        </h2>
+        <div class="mt-6 space-y-5 text-slate-300 leading-relaxed">
+          <p>
+            Every one of us has watched a restaurant owner curse a broken POS in the middle of a Saturday night rush. Watched a principal stay up till midnight generating report cards on a spreadsheet. Watched a traveller stranded on a highway at 2 AM with no idea who to call.
+          </p>
+          <p>
+            The tools for these people have not kept up. They're still using software that looks like it was designed in 2008 — because it was. Enterprise vendors sell them 40-module bloatware they never use, at prices no small operator can justify.
+          </p>
+          <p>
+            <span class="text-white font-semibold">We think there's a better way.</span> Build clean, opinionated software that solves the specific pain the operator actually has. Ship it fast. Price it fairly. Iterate with real customers, not with slide decks.
+          </p>
+          <p>
+            Adkrak Innovations exists to do exactly that — one category at a time. Restaurants first. Then schools. Then roads. Then everything else that makes real life happen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION VALUES -->
+  <section class="py-8">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🎯</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Focus on the operator</h3>
+          <p class="text-slate-400 text-sm">Every feature we ship must save the person who uses it 15 minutes a day. If not, it doesn't ship.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🇮🇳</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Built for India, first</h3>
+          <p class="text-slate-400 text-sm">GST-compliant invoicing, UPI-first payments, WhatsApp-native notifications, offline-friendly UI. Global works later.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">⚡</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Ship, don't sell</h3>
+          <p class="text-slate-400 text-sm">Our roadmap is public. Our demos are live. Our founders pick up the phone. No sales-managed reality distortion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDERS -->
+  <section id="team" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <div class="pill mb-4 mx-auto">The team</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          Meet the <span class="grad-text">co-founders.</span>
+        </h2>
+        <p class="mt-4 text-slate-400 text-lg max-w-2xl mx-auto">
+          Three roles, one shared belief — the operator's time is the most valuable thing in the business.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Adarsh -->
+        <div class="grad-border p-8 card-hover text-center relative">
+          <span class="quote-mark absolute top-2 right-4 text-white">"</span>
+          <div class="avatar mx-auto mb-4" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">AP</div>
+          <h3 class="font-display font-bold text-white text-xl">Adarsh P Pradeep</h3>
+          <p class="text-cyan-300 text-sm font-semibold mt-1">Co-Founder · CEO · CTO</p>
+          <p class="text-slate-400 text-sm italic mt-5">
+            "Great software should feel invisible — it does its job, then gets out of the way. Every feature we ship gets measured by that one bar."
+          </p>
+          <div class="mt-5 pt-4 border-t border-white/10 text-xs text-slate-500">
+            Product architecture · Engineering · Infrastructure
+          </div>
+        </div>
+
+        <!-- Akash -->
+        <div class="grad-border p-8 card-hover text-center relative">
+          <span class="quote-mark absolute top-2 right-4 text-white">"</span>
+          <div class="avatar mx-auto mb-4" style="background: linear-gradient(135deg, #f97316, #ef4444);">AH</div>
+          <h3 class="font-display font-bold text-white text-xl">Akash Harikumar</h3>
+          <p class="text-orange-300 text-sm font-semibold mt-1">Co-Founder · CEO · CMO</p>
+          <p class="text-slate-400 text-sm italic mt-5">
+            "We're building for the everyday industries — the restaurants, schools and roads that make real life happen. They deserve tools as good as their work."
+          </p>
+          <div class="mt-5 pt-4 border-t border-white/10 text-xs text-slate-500">
+            Growth · Customer success · Partnerships
+          </div>
+        </div>
+
+        <!-- Jayakrishna -->
+        <div class="grad-border p-8 card-hover text-center relative">
+          <span class="quote-mark absolute top-2 right-4 text-white">"</span>
+          <div class="avatar mx-auto mb-4" style="background: linear-gradient(135deg, #10b981, #14b8a6);">JJ</div>
+          <h3 class="font-display font-bold text-white text-xl">Jayakrishna Jayan</h3>
+          <p class="text-emerald-300 text-sm font-semibold mt-1">Co-Founder · CEO · CFO</p>
+          <p class="text-slate-400 text-sm italic mt-5">
+            "Every rupee our customers spend with us should return ten-fold in time saved and productivity gained. That's the deal — and we hold ourselves to it."
+          </p>
+          <div class="mt-5 pt-4 border-t border-white/10 text-xs text-slate-500">
+            Finance · Operations · Unit economics
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY STATS -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grad-border p-8 md:p-12 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-violet-600/20 blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-emerald-500/20 blur-3xl"></div>
+        <div class="relative grid md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="font-display font-bold grad-text text-4xl">6</div>
+            <div class="text-slate-400 text-sm mt-2">Products in the catalogue</div>
+          </div>
+          <div>
+            <div class="font-display font-bold grad-text text-4xl">2</div>
+            <div class="text-slate-400 text-sm mt-2">Live production apps</div>
+          </div>
+          <div>
+            <div class="font-display font-bold grad-text text-4xl">100%</div>
+            <div class="text-slate-400 text-sm mt-2">Built in India, for India</div>
+          </div>
+          <div>
+            <div class="font-display font-bold grad-text text-4xl">∞</div>
+            <div class="text-slate-400 text-sm mt-2">Bugs we'll fix for you</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="grad-border p-10 md:p-14 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-mesh opacity-60 pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+            Want to work with us?
+          </h2>
+          <p class="mt-6 text-slate-300 text-lg max-w-xl mx-auto">
+            Whether you're a restaurant owner, a school principal, or a company that needs a custom build — pick up the phone or drop a message. Founders reply directly.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="contact.html" class="px-6 py-3 rounded-lg font-semibold text-white" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+              Contact us
+            </a>
+            <a href="products.html" class="px-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5 transition">
+              See what we build
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-xs">A</span>
+        </div>
+        <span class="text-slate-400 text-sm">© 2026 Adkrak Innovations Pvt Ltd</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-slate-500">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="products.html" class="hover:text-white transition">Products</a>
+        <a href="about.html" class="hover:text-white transition">About</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="motion.js?v=3"></script>
+</body>
+</html>

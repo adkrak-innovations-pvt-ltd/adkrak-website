@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RestoPOS — Complete restaurant management, KOT & billing | Adkrak</title>
+  <meta name="description" content="RestoPOS by Adkrak — KOT printing, billing, inventory, Swiggy/Zomato sync and live owner dashboards. Built for India's restaurants." />
+  <meta name="theme-color" content="#0b1020" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #0b1020; color: #e5e7eb; font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+    .grad-text-orange {
+      background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ef4444 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .grad-border {
+      background: linear-gradient(#0f1530, #0f1530) padding-box,
+                  linear-gradient(135deg, rgba(251,146,60,0.5), rgba(239,68,68,0.4)) border-box;
+      border: 1px solid transparent; border-radius: 1rem;
+    }
+    .grad-bg-orange {
+      background: linear-gradient(135deg, #f97316, #ef4444);
+    }
+    .card-hover { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 25px 50px -12px rgba(249,115,22,0.25); }
+    .bg-mesh-orange {
+      background-image:
+        radial-gradient(at 20% 20%, rgba(251,146,60,0.18) 0px, transparent 50%),
+        radial-gradient(at 80% 10%, rgba(239,68,68,0.16) 0px, transparent 50%),
+        radial-gradient(at 50% 90%, rgba(251,146,60,0.10) 0px, transparent 50%);
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #cbd5e1;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #f97316; box-shadow: 0 0 8px #f97316; }
+    .nav-blur { backdrop-filter: saturate(180%) blur(14px); background: rgba(11,16,32,0.7); }
+
+    /* Mockup styling */
+    .mockup {
+      background: #0a0e1f;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 50px 100px -20px rgba(0,0,0,0.6);
+    }
+    .mockup-bar {
+      background: #111935;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .mockup-bar span { width: 10px; height: 10px; border-radius: 50%; }
+    .menu-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); padding: 10px; border-radius: 10px; }
+    .menu-item:hover { border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.06); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-lg">A</span>
+        </div>
+        <span class="font-display font-bold text-white text-lg tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+        <a href="index.html#products" class="hover:text-white transition">Products</a>
+        <a href="index.html#vision" class="hover:text-white transition">Vision</a>
+        <a href="index.html#about" class="hover:text-white transition">About</a>
+        <a href="index.html#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a href="#demo" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white grad-bg-orange">
+        Book a demo →
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-mesh-orange">
+    <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 pill mb-6">
+          <span class="dot"></span>
+          For restaurants, cafés, cloud kitchens & QSRs
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-14 h-14 rounded-2xl grid place-items-center font-display font-bold text-white text-xl grad-bg-orange">RP</div>
+          <span class="font-display text-2xl font-bold text-white">RestoPOS</span>
+        </div>
+        <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight text-white leading-[1.05]">
+          Run the entire restaurant<br/>
+          <span class="grad-text-orange">from a single tablet.</span>
+        </h1>
+        <p class="mt-6 text-lg text-slate-300 leading-relaxed max-w-2xl">
+          KOT printing. Billing. Inventory. Online orders. Owner dashboards.
+          One app on the counter, one app in the kitchen, one app on the phone.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#demo" class="px-6 py-3 rounded-lg font-semibold text-white grad-bg-orange">Book a free demo</a>
+          <a href="#features" class="px-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5 transition">See features</a>
+        </div>
+        <div class="mt-10 flex flex-wrap items-center gap-6 text-sm text-slate-400">
+          <span>✓ Works offline</span>
+          <span>✓ Hindi · English · regional languages</span>
+          <span>✓ GST-ready invoices</span>
+          <span>✓ Setup in 24 hours</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUP / Visual proof -->
+  <section class="pb-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mockup">
+        <div class="mockup-bar">
+          <span style="background:#ef4444"></span>
+          <span style="background:#fbbf24"></span>
+          <span style="background:#10b981"></span>
+          <div class="ml-3 text-xs text-slate-400 font-mono">restopos.app / table-7</div>
+        </div>
+        <div class="grid md:grid-cols-12 gap-0">
+          <!-- left: menu -->
+          <div class="md:col-span-7 p-6 border-r border-white/5">
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="font-display font-bold text-white">Table 7 · 4 guests</h4>
+              <span class="pill" style="color:#fb923c;border-color:rgba(251,146,60,0.3);background:rgba(251,146,60,0.1)">KOT pending</span>
+            </div>
+            <div class="flex gap-2 mb-4 text-xs">
+              <span class="px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 font-semibold">Starters</span>
+              <span class="px-3 py-1.5 rounded-full bg-white/5 text-slate-400">Main Course</span>
+              <span class="px-3 py-1.5 rounded-full bg-white/5 text-slate-400">Breads</span>
+              <span class="px-3 py-1.5 rounded-full bg-white/5 text-slate-400">Beverages</span>
+              <span class="px-3 py-1.5 rounded-full bg-white/5 text-slate-400">Desserts</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-sm">
+              <div class="menu-item">
+                <div class="text-white font-semibold text-xs">Paneer Tikka</div>
+                <div class="text-slate-400 text-xs mt-1">₹280</div>
+              </div>
+              <div class="menu-item">
+                <div class="text-white font-semibold text-xs">Chicken 65</div>
+                <div class="text-slate-400 text-xs mt-1">₹320</div>
+              </div>
+              <div class="menu-item">
+                <div class="text-white font-semibold text-xs">Veg Spring Roll</div>
+                <div class="text-slate-400 text-xs mt-1">₹220</div>
+              </div>
+              <div class="menu-item">
+                <div class="text-white font-semibold text-xs">Mushroom Pepper</div>
+                <div class="text-slate-400 text-xs mt-1">₹260</div>
+              </div>
+              <div class="menu-item">
+                <div class="text-white font-semibold text-xs">Tandoori Wings</div>
+                <div class="text-slate-400 text-xs mt-1">₹340</div>
+              </div>
+              <div class="menu-item">
+                <div class="text-white font-semibold text-xs">Hara Bhara Kebab</div>
+                <div class="text-slate-400 text-xs mt-1">₹240</div>
+              </div>
+            </div>
+          </div>
+          <!-- right: bill -->
+          <div class="md:col-span-5 p-6 bg-black/20">
+            <h4 class="font-display font-bold text-white mb-4">Current Bill</h4>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between text-slate-300"><span>2× Paneer Tikka</span><span>₹560</span></div>
+              <div class="flex justify-between text-slate-300"><span>1× Chicken 65</span><span>₹320</span></div>
+              <div class="flex justify-between text-slate-300"><span>3× Butter Naan</span><span>₹180</span></div>
+              <div class="flex justify-between text-slate-300"><span>1× Dal Makhani</span><span>₹290</span></div>
+              <div class="border-t border-white/10 pt-3 flex justify-between text-slate-400 text-xs"><span>Subtotal</span><span>₹1,350</span></div>
+              <div class="flex justify-between text-slate-400 text-xs"><span>GST (5%)</span><span>₹67.50</span></div>
+              <div class="flex justify-between text-white font-bold text-base pt-2 border-t border-white/10"><span>Total</span><span>₹1,417.50</span></div>
+            </div>
+            <button class="w-full mt-5 py-3 rounded-lg font-semibold text-white grad-bg-orange">Print KOT + Bill</button>
+            <div class="grid grid-cols-3 gap-2 mt-2 text-xs">
+              <button class="py-2 rounded-lg bg-white/5 border border-white/10 text-slate-300">Cash</button>
+              <button class="py-2 rounded-lg bg-white/5 border border-white/10 text-slate-300">UPI</button>
+              <button class="py-2 rounded-lg bg-white/5 border border-white/10 text-slate-300">Card</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mb-14">
+        <div class="pill mb-4">Features</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          Everything your restaurant needs.<br/><span class="grad-text-orange">Nothing it doesn't.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🧾</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Smart KOT printing</h3>
+          <p class="text-slate-400 text-sm">Auto-route orders to the right kitchen station — tandoor, Chinese, dessert. Edits and cancels print clearly to avoid confusion.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">💳</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">One-tap billing</h3>
+          <p class="text-slate-400 text-sm">GST-compliant invoices, split bills, table merges, discounts, loyalty redemption — all from one screen.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📦</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Recipe-level inventory</h3>
+          <p class="text-slate-400 text-sm">Every dish sold deducts ingredients automatically. Know exactly when paneer or oil runs low — before the kitchen does.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🍔</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Swiggy + Zomato sync</h3>
+          <p class="text-slate-400 text-sm">Online orders land directly on the same KOT screen. No more juggling three tablets behind the counter.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📱</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Owner app</h3>
+          <p class="text-slate-400 text-sm">Live sales, top items, staff performance and cash drawer status — on the owner's phone, from anywhere.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🔌</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Works offline</h3>
+          <p class="text-slate-400 text-sm">Internet down? RestoPOS keeps billing. Everything syncs the moment you're back online.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">👥</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Staff & roles</h3>
+          <p class="text-slate-400 text-sm">Captain, cashier, manager — each sees only what they need. Track shifts, void rates, and tips.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">🪑</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Table & floor plan</h3>
+          <p class="text-slate-400 text-sm">Visual table map. See who's seated, who's waiting, who needs the bill — at a glance.</p>
+        </div>
+        <div class="grad-border p-6 card-hover">
+          <div class="text-3xl mb-3">📊</div>
+          <h3 class="font-display font-bold text-white text-lg mb-2">Reports that mean something</h3>
+          <p class="text-slate-400 text-sm">Daily P&L, item profitability, peak hours, wastage. Plain English, no Excel needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="pill mb-4">Built for</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-10">
+        From a 4-table café to a 40-outlet chain.
+      </h2>
+      <div class="grid md:grid-cols-4 gap-5">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">☕</div>
+          <h3 class="text-white font-semibold mb-1">Cafés & QSRs</h3>
+          <p class="text-slate-400 text-sm">Quick billing, takeaway, loyalty cards.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">🍽️</div>
+          <h3 class="text-white font-semibold mb-1">Fine dining</h3>
+          <p class="text-slate-400 text-sm">Table mgmt, course pacing, captain orders.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">🍕</div>
+          <h3 class="text-white font-semibold mb-1">Cloud kitchens</h3>
+          <p class="text-slate-400 text-sm">Aggregator sync, prep timers, rider hand-off.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl mb-3">🏬</div>
+          <h3 class="text-white font-semibold mb-1">Multi-outlet chains</h3>
+          <p class="text-slate-400 text-sm">Central menu, central reports, branch comparison.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="pill mb-4 mx-auto">Pricing</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+          Honest pricing. <span class="grad-text-orange">No lock-in.</span>
+        </h2>
+        <p class="mt-4 text-slate-400">Pay monthly. Cancel any time. Free setup and training included.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="p-7 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-display font-bold text-white text-xl">Starter</h3>
+          <p class="text-slate-400 text-sm mt-1">Single counter, small kitchen.</p>
+          <div class="mt-5 flex items-baseline gap-1">
+            <span class="font-display font-bold text-white text-4xl">₹999</span>
+            <span class="text-slate-400 text-sm">/month</span>
+          </div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>✓ 1 billing terminal</li>
+            <li>✓ KOT printing</li>
+            <li>✓ Basic inventory</li>
+            <li>✓ Daily reports</li>
+            <li>✓ Email support</li>
+          </ul>
+          <a href="#demo" class="block text-center mt-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5">Start free trial</a>
+        </div>
+
+        <div class="p-7 rounded-2xl grad-border relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 pill" style="background:#f97316;color:white;border-color:#f97316">Most popular</span>
+          <h3 class="font-display font-bold text-white text-xl">Growth</h3>
+          <p class="text-slate-400 text-sm mt-1">Full-service restaurant.</p>
+          <div class="mt-5 flex items-baseline gap-1">
+            <span class="font-display font-bold text-white text-4xl">₹2,499</span>
+            <span class="text-slate-400 text-sm">/month</span>
+          </div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>✓ Up to 3 terminals</li>
+            <li>✓ Multi-kitchen KOT routing</li>
+            <li>✓ Recipe-level inventory</li>
+            <li>✓ Swiggy & Zomato sync</li>
+            <li>✓ Owner mobile app</li>
+            <li>✓ Priority phone support</li>
+          </ul>
+          <a href="#demo" class="block text-center mt-6 py-3 rounded-lg font-semibold text-white grad-bg-orange">Start free trial</a>
+        </div>
+
+        <div class="p-7 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-display font-bold text-white text-xl">Chain</h3>
+          <p class="text-slate-400 text-sm mt-1">Multi-outlet, central control.</p>
+          <div class="mt-5 flex items-baseline gap-1">
+            <span class="font-display font-bold text-white text-4xl">Custom</span>
+          </div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>✓ Unlimited terminals & outlets</li>
+            <li>✓ Central menu & pricing</li>
+            <li>✓ Inter-branch reports</li>
+            <li>✓ API & integrations</li>
+            <li>✓ Dedicated account manager</li>
+            <li>✓ 24×7 support</li>
+          </ul>
+          <a href="#demo" class="block text-center mt-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="pill mb-4">FAQ</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-10">Questions, answered.</h2>
+      <div class="space-y-3">
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">Do I need new hardware? <span class="text-orange-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">No. RestoPOS runs on any Android tablet or Windows PC you already own. Thermal printers and barcode scanners we'll source for you at cost.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">What happens if the internet goes down? <span class="text-orange-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">RestoPOS keeps running fully offline. Bills print, KOTs go out, data syncs to the cloud automatically the moment you're online again.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">How long does setup take? <span class="text-orange-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">From signup to first bill: under 24 hours. We upload your menu, configure tax, train your staff over a video call, and stay on standby for the first dinner service.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">Can I migrate from another POS? <span class="text-orange-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">Yes. We import menus and customer data from Petpooja, PosBytz, Posist and most CSV/Excel exports — free of charge.</p>
+        </details>
+        <details class="group p-5 rounded-xl bg-white/5 border border-white/10">
+          <summary class="cursor-pointer font-semibold text-white flex justify-between items-center">Is my data safe? <span class="text-orange-400 group-open:rotate-45 transition">+</span></summary>
+          <p class="mt-3 text-slate-400 text-sm">Daily encrypted backups, ISO-grade Indian data centres, role-based access. You can export your full data anytime — zero lock-in.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="demo" class="py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="grad-border p-10 md:p-14 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-orange opacity-60 pointer-events-none"></div>
+        <div class="relative">
+          <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
+            See RestoPOS run<br/>your restaurant.
+          </h2>
+          <p class="mt-6 text-slate-300 text-lg max-w-xl mx-auto">
+            30-minute live demo with our team. We'll set up a sandbox with your actual menu so you can feel it before you commit.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="mailto:restopos@adkrak.com?subject=RestoPOS%20demo%20request" class="px-6 py-3 rounded-lg font-semibold text-white grad-bg-orange">Book a free demo</a>
+            <a href="tel:+910000000000" class="px-6 py-3 rounded-lg font-semibold text-slate-200 border border-white/10 hover:bg-white/5 transition">Call us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-10 mt-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg grid place-items-center" style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+          <span class="font-display font-bold text-white text-xs">A</span>
+        </div>
+        <span class="text-slate-400 text-sm">© 2026 Adkrak Innovations Pvt Ltd</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-slate-500">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="edunova.html" class="hover:text-white transition">EduNova</a>
+        <a href="index.html#contact" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adkrak Innovations — Software for the industries that matter</title>
+  <meta name="description" content="Adkrak builds vertical SaaS for restaurants, schools, exams and roads. EduNova, RestoPOS, Exam Portal, Report Generation, Roadgenie." />
+  <meta name="theme-color" content="#0a0e1f" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css?v=3" />
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-mark">A</div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-glow"></div>
+  <div class="cursor-dot"></div>
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-40 nav-blur border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl grid place-items-center transition-transform group-hover:rotate-6"
+             style="background: linear-gradient(135deg, #7c3aed, #2563eb); box-shadow: 0 0 30px rgba(124,58,237,0.3);">
+          <span class="font-display font-bold text-white text-lg">A</span>
+        </div>
+        <span class="font-display font-bold text-white text-lg tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10 text-sm text-slate-300">
+        <a href="index.html" class="text-white font-semibold">Home</a>
+        <a href="products.html" class="hover:text-white transition">Products</a>
+        <a href="about.html" class="hover:text-white transition">About</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a href="contact.html" class="hidden md:inline-flex btn btn-primary !py-2.5 !px-5 magnetic">
+        Get in touch <span>→</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-mesh-animated pt-32 pb-20">
+    <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+    <div class="noise"></div>
+
+    <!-- Floating orbs -->
+    <div class="orb" style="width: 400px; height: 400px; top: 10%; left: 5%; background: #a78bfa;" data-parallax="0.2"></div>
+    <div class="orb" style="width: 500px; height: 500px; bottom: 5%; right: 5%; background: #34d399; animation-delay: -6s;" data-parallax="0.12"></div>
+    <div class="orb" style="width: 300px; height: 300px; top: 40%; right: 25%; background: #60a5fa; animation-delay: -12s;" data-parallax="0.28"></div>
+
+    <div class="relative max-w-6xl mx-auto px-6 text-center">
+      <div class="pill reveal mb-8">
+        <span class="pill-dot"></span>
+        Now incorporated — Adkrak Innovations Pvt Ltd
+      </div>
+
+      <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.02] reveal-words">
+        Software for the<br/>
+        <span class="grad-text">industries that</span> <span class="font-serif italic text-white/90">matter.</span>
+      </h1>
+
+      <p class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed reveal" style="--reveal-delay: 400ms;">
+        Restaurants, schools, exams and roads.
+        Built mobile-first. Priced for real operators. Shipping from Kerala.
+      </p>
+
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-4 reveal" style="--reveal-delay: 600ms;">
+        <a href="products.html" class="magnetic">
+          <span class="btn btn-primary">Explore products <span>→</span></span>
+        </a>
+        <a href="contact.html" class="magnetic">
+          <span class="btn btn-ghost">Talk to founders</span>
+        </a>
+      </div>
+
+      <div class="ornament mt-20 reveal" style="--reveal-delay: 900ms;"></div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 text-xs tracking-widest uppercase animate-bounce reveal" style="--reveal-delay: 1100ms;">
+      Scroll ↓
+    </div>
+  </section>
+
+  <!-- Marquee strip -->
+  <section class="py-10 border-y border-white/5 overflow-hidden bg-black/20">
+    <div class="marquee font-display font-semibold text-2xl text-slate-500/70">
+      <span>EduNova · Demo Ready</span>
+      <span>✦</span>
+      <span>RestoPOS · Demo Ready</span>
+      <span>✦</span>
+      <span>Exam Portal · Product Ready</span>
+      <span>✦</span>
+      <span>Report Generation · Product Ready</span>
+      <span>✦</span>
+      <span>Roadgenie · In Progress</span>
+      <span>✦</span>
+      <span>Custom Web Dev</span>
+      <span>✦</span>
+      <span>EduNova · Demo Ready</span>
+      <span>✦</span>
+      <span>RestoPOS · Demo Ready</span>
+      <span>✦</span>
+      <span>Exam Portal · Product Ready</span>
+      <span>✦</span>
+      <span>Report Generation · Product Ready</span>
+      <span>✦</span>
+      <span>Roadgenie · In Progress</span>
+      <span>✦</span>
+      <span>Custom Web Dev</span>
+      <span>✦</span>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="py-28 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-16 reveal">
+        <div class="max-w-2xl">
+          <div class="pill mb-5">Our products</div>
+          <h2 class="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+            Six products.<br/>
+            <span class="font-serif italic grad-text-2">One mission.</span>
+          </h2>
+          <p class="mt-5 text-slate-400 text-lg leading-relaxed">
+            Each product solves an end-to-end workflow for one industry.
+            No generic dashboards — built for the people who actually use them.
+          </p>
+        </div>
+        <a href="products.html" class="btn btn-ghost hidden md:inline-flex magnetic">
+          Full catalogue →
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 stagger">
+
+        <!-- EduNova -->
+        <a href="edunova.html" class="card-lux tilt block">
+          <div class="flex items-start justify-between mb-6">
+            <div class="icon-orb" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">EN</div>
+            <span class="pill status-live"><span class="pill-dot"></span> Demo Ready</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white">EduNova</h3>
+          <p class="text-slate-400 mt-2 mb-5">Complete school & college management platform.</p>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><span class="text-cyan-400">▸</span> Attendance, timetable, exams, auto report cards</li>
+            <li class="flex gap-2"><span class="text-cyan-400">▸</span> Fee collection with WhatsApp / email receipts</li>
+            <li class="flex gap-2"><span class="text-cyan-400">▸</span> Parent portal — live attendance, fees, marks</li>
+            <li class="flex gap-2"><span class="text-cyan-400">▸</span> Library, transport, staff, announcements</li>
+          </ul>
+          <div class="mt-6 text-cyan-400 text-sm font-semibold flex items-center gap-1">Learn more <span>→</span></div>
+        </a>
+
+        <!-- RestoPOS -->
+        <a href="restopos.html" class="card-lux tilt block">
+          <div class="flex items-start justify-between mb-6">
+            <div class="icon-orb" style="background: linear-gradient(135deg, #f97316, #ef4444);">RP</div>
+            <span class="pill status-live"><span class="pill-dot"></span> Demo Ready</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white">RestoPOS</h3>
+          <p class="text-slate-400 mt-2 mb-5">Restaurant management from kitchen to counter.</p>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><span class="text-orange-400">▸</span> Multi-customer table billing, GST-compliant invoices</li>
+            <li class="flex gap-2"><span class="text-orange-400">▸</span> Live Kitchen Display System with station routing</li>
+            <li class="flex gap-2"><span class="text-orange-400">▸</span> Customer QR self-ordering — no app install</li>
+            <li class="flex gap-2"><span class="text-orange-400">▸</span> UPI, cash, card + role-based access</li>
+          </ul>
+          <div class="mt-6 text-orange-400 text-sm font-semibold flex items-center gap-1">Learn more <span>→</span></div>
+        </a>
+
+        <!-- Exam Portal -->
+        <a href="products.html" class="card-lux tilt block">
+          <div class="flex items-start justify-between mb-6">
+            <div class="icon-orb" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">EP</div>
+            <span class="pill status-ready">● Product Ready</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white">Exam Portal</h3>
+          <p class="text-slate-400 mt-2 mb-5">Secure online examination platform.</p>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><span class="text-violet-400">▸</span> Question banks — MCQ, subjective, code answers</li>
+            <li class="flex gap-2"><span class="text-violet-400">▸</span> Timed tests, auto-submit, pause / resume</li>
+            <li class="flex gap-2"><span class="text-violet-400">▸</span> AI proctoring flags cheating in real time</li>
+            <li class="flex gap-2"><span class="text-violet-400">▸</span> Auto-grading + instant result publication</li>
+          </ul>
+          <div class="mt-6 text-violet-400 text-sm font-semibold flex items-center gap-1">Learn more <span>→</span></div>
+        </a>
+
+        <!-- Report Generation -->
+        <a href="products.html" class="card-lux tilt block">
+          <div class="flex items-start justify-between mb-6">
+            <div class="icon-orb" style="background: linear-gradient(135deg, #10b981, #14b8a6);">RG</div>
+            <span class="pill status-ready">● Product Ready</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white">Report Generation</h3>
+          <p class="text-slate-400 mt-2 mb-5">Automated report engine for busy teams.</p>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><span class="text-emerald-400">▸</span> Pull from spreadsheets, databases, APIs</li>
+            <li class="flex gap-2"><span class="text-emerald-400">▸</span> Design once with reusable branded templates</li>
+            <li class="flex gap-2"><span class="text-emerald-400">▸</span> Scheduled daily / weekly / monthly runs</li>
+            <li class="flex gap-2"><span class="text-emerald-400">▸</span> PDF & Excel output, emailed automatically</li>
+          </ul>
+          <div class="mt-6 text-emerald-400 text-sm font-semibold flex items-center gap-1">Learn more <span>→</span></div>
+        </a>
+
+        <!-- Roadgenie -->
+        <a href="products.html" class="card-lux tilt block">
+          <div class="flex items-start justify-between mb-6">
+            <div class="icon-orb" style="background: linear-gradient(135deg, #ec4899, #d946ef);">RD</div>
+            <span class="pill status-wip">● In Progress</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white">Roadgenie</h3>
+          <p class="text-slate-400 mt-2 mb-5">Travel companion & roadside assistance app.</p>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><span class="text-pink-400">▸</span> Compare bus packages across operators in one search</li>
+            <li class="flex gap-2"><span class="text-pink-400">▸</span> Real-time GPS tracking shared with family</li>
+            <li class="flex gap-2"><span class="text-pink-400">▸</span> 24×7 roadside help — towing, fuel, mechanic</li>
+            <li class="flex gap-2"><span class="text-pink-400">▸</span> SOS routes to nearest help in 30 seconds</li>
+          </ul>
+          <div class="mt-6 text-pink-400 text-sm font-semibold flex items-center gap-1">Join the waitlist <span>→</span></div>
+        </a>
+
+        <!-- Custom Web Dev -->
+        <a href="products.html" class="card-lux tilt block">
+          <div class="flex items-start justify-between mb-6">
+            <div class="icon-orb" style="background: linear-gradient(135deg, #64748b, #475569);">CW</div>
+            <span class="pill status-service">● Service</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white">Custom Web Dev</h3>
+          <p class="text-slate-400 mt-2 mb-5">Bespoke web apps for businesses that need one.</p>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex gap-2"><span class="text-slate-400">▸</span> Marketing sites, dashboards, portals, e-commerce</li>
+            <li class="flex gap-2"><span class="text-slate-400">▸</span> Modern stack — Next.js, Supabase, Cloudflare</li>
+            <li class="flex gap-2"><span class="text-slate-400">▸</span> Payment, WhatsApp, SMS, Google & UPI integrations</li>
+            <li class="flex gap-2"><span class="text-slate-400">▸</span> Fixed price, fixed timeline, code you own</li>
+          </ul>
+          <div class="mt-6 text-slate-300 text-sm font-semibold flex items-center gap-1">Discuss your project <span>→</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-28">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="card-lux !p-12 md:!p-16 text-center relative overflow-hidden reveal-scale">
+        <div class="orb" style="width: 300px; height: 300px; top: -100px; left: 10%; background: #a78bfa; opacity: 0.3;"></div>
+        <div class="orb" style="width: 300px; height: 300px; bottom: -100px; right: 10%; background: #34d399; opacity: 0.3; animation-delay: -8s;"></div>
+        <div class="relative">
+          <div class="pill mb-4 mx-auto">Where we stand today</div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-14 reveal-words">
+            <span class="font-serif italic grad-text">Real</span> product, <span class="font-serif italic grad-text">real</span> traction, <span class="font-serif italic grad-text">real</span> founders.
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 stagger">
+            <div>
+              <div class="font-display font-bold text-white text-5xl md:text-6xl">
+                <span class="counter" data-count="6">6</span>
+              </div>
+              <div class="text-slate-400 text-sm mt-2">Products in the catalogue</div>
+            </div>
+            <div>
+              <div class="font-display font-bold text-white text-5xl md:text-6xl">
+                <span class="counter" data-count="2">2</span>
+              </div>
+              <div class="text-slate-400 text-sm mt-2">Live production apps</div>
+            </div>
+            <div>
+              <div class="font-display font-bold text-white text-5xl md:text-6xl">
+                <span class="counter" data-count="3">3</span>
+              </div>
+              <div class="text-slate-400 text-sm mt-2">Co-founders, one mission</div>
+            </div>
+            <div>
+              <div class="font-display font-bold text-white text-5xl md:text-6xl">
+                <span class="counter" data-count="100" data-format="%">100%</span>
+              </div>
+              <div class="text-slate-400 text-sm mt-2">Made in India, for India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INNOVATION LAYER -->
+  <section class="py-28">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="card-lux !p-12 md:!p-20 relative overflow-hidden reveal">
+        <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-violet-600/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-emerald-500/20 blur-3xl"></div>
+        <div class="relative max-w-3xl">
+          <div class="pill mb-5">The Adkrak difference</div>
+          <h2 class="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+            Software with a <span class="font-serif italic grad-text-2">soul</span> —<br/>
+            not another dashboard.
+          </h2>
+          <p class="mt-8 text-slate-300 text-lg leading-relaxed">
+            Every restaurant, school and highway in India runs on software designed for 2008.
+            Bloatware nobody uses, priced for enterprises nobody works at.
+          </p>
+          <p class="mt-4 text-slate-300 text-lg leading-relaxed">
+            We're rewriting that layer — one category at a time. Opinionated products,
+            fair pricing, built by founders who actually pick up the phone.
+          </p>
+          <div class="mt-12 grid md:grid-cols-3 gap-5 stagger">
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-3">🎯</div>
+              <div class="font-display font-bold text-white text-lg mb-1">Focus on the operator</div>
+              <div class="text-slate-400 text-sm">Every feature must save 15 min a day. If not, it doesn't ship.</div>
+            </div>
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-3">🇮🇳</div>
+              <div class="font-display font-bold text-white text-lg mb-1">Built for India, first</div>
+              <div class="text-slate-400 text-sm">GST, UPI, WhatsApp, offline. Global works later.</div>
+            </div>
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-2xl mb-3">⚡</div>
+              <div class="font-display font-bold text-white text-lg mb-1">Ship, don't sell</div>
+              <div class="text-slate-400 text-sm">Live demos, public roadmap, founders on the phone.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-28 relative overflow-hidden">
+    <div class="absolute inset-0 bg-mesh-animated"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative reveal">
+      <div class="pill mb-8 mx-auto">Let's build something</div>
+      <h2 class="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight reveal-words">
+        Ready to see a<br/>
+        <span class="font-serif italic grad-text">product that just works?</span>
+      </h2>
+      <p class="mt-8 text-slate-300 text-lg max-w-xl mx-auto">
+        Founders reply within one business day. Tell us your industry, your pain, and what you're trying to fix.
+      </p>
+      <div class="mt-12 flex flex-wrap justify-center gap-4">
+        <a href="contact.html" class="magnetic">
+          <span class="btn btn-primary">Send us a message →</span>
+        </a>
+        <a href="tel:+919876543210" class="magnetic">
+          <span class="btn btn-ghost">📞 Call us</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-14">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-9 h-9 rounded-xl grid place-items-center"
+                 style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
+              <span class="font-display font-bold text-white">A</span>
+            </div>
+            <span class="font-display font-bold text-white tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Software for the industries that never sleep.
+          </p>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4">Products</div>
+          <div class="space-y-2 text-sm">
+            <a href="edunova.html" class="block text-slate-300 hover:text-white transition">EduNova</a>
+            <a href="restopos.html" class="block text-slate-300 hover:text-white transition">RestoPOS</a>
+            <a href="products.html" class="block text-slate-300 hover:text-white transition">Exam Portal</a>
+            <a href="products.html" class="block text-slate-300 hover:text-white transition">Report Generation</a>
+            <a href="products.html" class="block text-slate-300 hover:text-white transition">Roadgenie</a>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4">Company</div>
+          <div class="space-y-2 text-sm">
+            <a href="about.html" class="block text-slate-300 hover:text-white transition">About</a>
+            <a href="about.html#team" class="block text-slate-300 hover:text-white transition">Founders</a>
+            <a href="contact.html" class="block text-slate-300 hover:text-white transition">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4">Reach us</div>
+          <div class="space-y-2 text-sm">
+            <a href="mailto:hello@adkrak.com" class="block text-slate-300 hover:text-white transition">hello@adkrak.com</a>
+            <a href="tel:+919876543210" class="block text-slate-300 hover:text-white transition">+91 98765 43210</a>
+            <span class="block text-slate-500">Kerala, India</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-3">
+        <span class="text-slate-500 text-xs">© 2026 Adkrak Innovations Pvt Ltd. All rights reserved.</span>
+        <span class="text-slate-500 text-xs">Made with intention in Kerala 🇮🇳</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="motion.js?v=3"></script>
+</body>
+</html>
