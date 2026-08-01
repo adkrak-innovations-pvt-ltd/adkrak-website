@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Adkrak Innovations">
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="55%" stop-color="#0f1e3d"/>
+      <stop offset="100%" stop-color="#0a1428"/>
+    </linearGradient>
+    <linearGradient id="platinum" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="55%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded steel-blue tile -->
+  <rect x="8" y="8" width="184" height="184" rx="38" fill="url(#steel)"/>
+
+  <!-- Inner border ring for platinum sheen -->
+  <rect x="14" y="14" width="172" height="172" rx="32" fill="none" stroke="url(#platinum)" stroke-opacity="0.15" stroke-width="1"/>
+
+  <!-- Teal/emerald ambient glow behind mark -->
+  <circle cx="100" cy="112" r="52" fill="url(#glow)" opacity="0.35" filter="url(#soft)"/>
+
+  <!-- Monogram: stylized "A" whose crossbar splits AD | KR | AK -->
+  <!-- Left leg -->
+  <path d="M56 158 L94 42 L106 42 L144 158 L124 158 L114 128 L86 128 L76 158 Z"
+        fill="url(#platinum)"/>
+  <!-- Crossbar with three vertical facets for AD / KR / AK -->
+  <path d="M90 108 L110 108 L114 122 L86 122 Z" fill="#0f1e3d"/>
+  <rect x="93" y="110" width="2" height="10" fill="url(#glow)"/>
+  <rect x="99" y="110" width="2" height="10" fill="url(#glow)"/>
+  <rect x="105" y="110" width="2" height="10" fill="url(#glow)"/>
+
+  <!-- Emerald accent apex spark -->
+  <circle cx="100" cy="42" r="4" fill="url(#glow)"/>
+  <circle cx="100" cy="42" r="8" fill="url(#glow)" opacity="0.35" filter="url(#soft)"/>
+</svg>
