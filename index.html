@@ -24,10 +24,7 @@
   <header class="fixed top-0 inset-x-0 z-40 nav-blur border-b border-white/5">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-2.5 group">
-        <div class="w-10 h-10 rounded-xl grid place-items-center transition-transform group-hover:rotate-6"
-             style="background: linear-gradient(135deg, #7c3aed, #2563eb); box-shadow: 0 0 30px rgba(124,58,237,0.3);">
-          <span class="font-display font-bold text-white text-lg">A</span>
-        </div>
+        <img src="logo-mark.svg?v=1" alt="Adkrak" class="w-10 h-10 rounded-xl transition-transform group-hover:rotate-6" style="box-shadow: 0 0 30px rgba(6,182,212,0.35);" />
         <span class="font-display font-bold text-white text-lg tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
       </a>
       <nav class="hidden md:flex items-center gap-10 text-sm text-slate-300">
@@ -44,6 +41,7 @@
 
   <!-- HERO -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-mesh-animated pt-32 pb-20">
+    <canvas id="hero-constellation" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0; opacity:0.9;"></canvas>
     <div class="absolute inset-0 grid-bg pointer-events-none"></div>
     <div class="noise"></div>
 
@@ -63,7 +61,11 @@
         <span class="grad-text">industries that</span> <span class="font-serif italic text-white/90">matter.</span>
       </h1>
 
-      <p class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed reveal" style="--reveal-delay: 400ms;">
+      <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl grad-text font-semibold tracking-wide reveal" style="--reveal-delay: 300ms;">
+        Your Vision, Architected to Perfection.
+      </p>
+
+      <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed reveal" style="--reveal-delay: 400ms;">
         Restaurants, schools, exams and roads.
         Built mobile-first. Priced for real operators. Shipping from Kerala.
       </p>
@@ -356,10 +358,7 @@
       <div class="grid md:grid-cols-4 gap-10 mb-10">
         <div>
           <div class="flex items-center gap-2.5 mb-4">
-            <div class="w-9 h-9 rounded-xl grid place-items-center"
-                 style="background: linear-gradient(135deg, #7c3aed, #2563eb);">
-              <span class="font-display font-bold text-white">A</span>
-            </div>
+            <img src="logo-mark.svg?v=1" alt="Adkrak" class="w-10 h-10 rounded-xl transition-transform group-hover:rotate-6" style="box-shadow: 0 0 30px rgba(6,182,212,0.35);" />
             <span class="font-display font-bold text-white tracking-tight">Adkrak<span class="text-violet-400">.</span></span>
           </div>
           <p class="text-slate-400 text-sm leading-relaxed">
@@ -401,5 +400,144 @@
   </footer>
 
   <script src="motion.js?v=4"></script>
+
+  <!-- Three.js particle constellation on hero -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+    const canvas = document.getElementById('hero-constellation');
+    if (canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const section = canvas.parentElement;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+      camera.position.z = 320;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const resize = () => {
+        const w = section.clientWidth, h = section.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      };
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Particle field
+      const COUNT = 240;
+      const positions = new Float32Array(COUNT * 3);
+      const velocities = [];
+      for (let i = 0; i < COUNT; i++) {
+        positions[i*3+0] = (Math.random() - 0.5) * 700;
+        positions[i*3+1] = (Math.random() - 0.5) * 500;
+        positions[i*3+2] = (Math.random() - 0.5) * 400;
+        velocities.push({
+          x: (Math.random() - 0.5) * 0.15,
+          y: (Math.random() - 0.5) * 0.15,
+          z: (Math.random() - 0.5) * 0.1,
+        });
+      }
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      // Custom point sprite — soft round glow
+      const spriteCanvas = document.createElement('canvas');
+      spriteCanvas.width = spriteCanvas.height = 64;
+      const sctx = spriteCanvas.getContext('2d');
+      const grad = sctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grad.addColorStop(0, 'rgba(52,211,153,1)');
+      grad.addColorStop(0.4, 'rgba(6,182,212,0.55)');
+      grad.addColorStop(1, 'rgba(6,182,212,0)');
+      sctx.fillStyle = grad;
+      sctx.fillRect(0, 0, 64, 64);
+      const sprite = new THREE.CanvasTexture(spriteCanvas);
+
+      const pointsMat = new THREE.PointsMaterial({
+        size: 6,
+        map: sprite,
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      });
+      const points = new THREE.Points(geometry, pointsMat);
+      scene.add(points);
+
+      // Connecting line web — recomputed each frame
+      const lineMat = new THREE.LineBasicMaterial({
+        color: 0x60a5fa,
+        transparent: true,
+        opacity: 0.18,
+        blending: THREE.AdditiveBlending,
+      });
+      const lineGeom = new THREE.BufferGeometry();
+      const linePositions = new Float32Array(COUNT * COUNT * 6);
+      lineGeom.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+      const lines = new THREE.LineSegments(lineGeom, lineMat);
+      scene.add(lines);
+
+      // Mouse influence
+      let mx = 0, my = 0;
+      window.addEventListener('mousemove', (e) => {
+        const r = section.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        my = -((e.clientY - r.top) / r.height - 0.5) * 2;
+      });
+
+      let scrollY = 0;
+      window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+      const LINK_DIST = 95;
+      const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
+
+      function animate() {
+        // Move particles
+        for (let i = 0; i < COUNT; i++) {
+          const v = velocities[i];
+          positions[i*3+0] += v.x;
+          positions[i*3+1] += v.y;
+          positions[i*3+2] += v.z;
+          // Wrap
+          if (positions[i*3+0] >  350) positions[i*3+0] = -350;
+          if (positions[i*3+0] < -350) positions[i*3+0] =  350;
+          if (positions[i*3+1] >  260) positions[i*3+1] = -260;
+          if (positions[i*3+1] < -260) positions[i*3+1] =  260;
+        }
+        geometry.attributes.position.needsUpdate = true;
+
+        // Rebuild line web (limited pairs to keep frame budget)
+        let li = 0;
+        for (let i = 0; i < COUNT; i++) {
+          for (let j = i + 1; j < COUNT; j++) {
+            const dx = positions[i*3] - positions[j*3];
+            const dy = positions[i*3+1] - positions[j*3+1];
+            const dz = positions[i*3+2] - positions[j*3+2];
+            const distSq = dx*dx + dy*dy + dz*dz;
+            if (distSq < LINK_DIST_SQ) {
+              linePositions[li++] = positions[i*3];
+              linePositions[li++] = positions[i*3+1];
+              linePositions[li++] = positions[i*3+2];
+              linePositions[li++] = positions[j*3];
+              linePositions[li++] = positions[j*3+1];
+              linePositions[li++] = positions[j*3+2];
+            }
+          }
+        }
+        for (let k = li; k < linePositions.length; k++) linePositions[k] = 0;
+        lineGeom.attributes.position.needsUpdate = true;
+        lineGeom.setDrawRange(0, li / 3);
+
+        // Camera drift with cursor + scroll
+        camera.position.x += (mx * 40 - camera.position.x) * 0.03;
+        camera.position.y += (my * 30 - camera.position.y) * 0.03;
+        camera.position.z = 320 + scrollY * 0.15;
+        camera.lookAt(0, 0, 0);
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+  </script>
 </body>
 </html>
